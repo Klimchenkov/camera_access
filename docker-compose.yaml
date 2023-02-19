@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  server:
+    build:
+      context: ./backend
+    container_name: server
+    restart: 'always'
+    env_file:
+      - .env
+
+  client:
+    build:
+      context: ./frontend
+    container_name: client
+    restart: 'always'
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
