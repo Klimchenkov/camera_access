@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted,ref } from 'vue'
+import axios from 'axios';
 
-const connection = new WebSocket("ws://localhost:8000/ws");
-
+const connection = new WebSocket("ws://0.0.0.0:8000/ws");
 
 onMounted(() => {
   connection.onmessage = function(e){
@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 </script>
-
+ 
 <template>
   <img id="frame" src="">
 </template> 

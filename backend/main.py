@@ -4,11 +4,10 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from websockets.exceptions import ConnectionClosedError,ConnectionClosedOK
 from camera import Camera
 
-
 app = FastAPI()
+
 camera = Camera(os.environ.get("CAMERA_URL", 0))
 connections = {}
-
 
 @app.websocket("/ws")
 async def broadcast(websocket: WebSocket):
@@ -28,5 +27,3 @@ async def broadcast(websocket: WebSocket):
             camera.stop()
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host='0.0.0.0', port=8000)
